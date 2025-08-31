@@ -25,7 +25,7 @@ namespace WhoPlantAmI
             try
             {
                 string filename = "results.csv";
-                var lines = File.ReadAllLines(filename).Skip(1); // 첫 줄 헤더 스킵
+                var lines = File.ReadAllLines(filename).Skip(1); // 첫 줄 제외
                 results = lines.Select(line =>
                 {
                     var parts = line.Split(',');    // , 로 구분
@@ -65,11 +65,12 @@ namespace WhoPlantAmI
             FormHistory form = Application.OpenForms["FormHistory"] as FormHistory;
             if (form != null)
             {
+                form.UpdateHistory();
                 form.Activate();
             }
             else
             {
-                form = new FormHistory();
+                form = new FormHistory(this);
                 form.Show();
             }
         }
@@ -98,8 +99,10 @@ namespace WhoPlantAmI
 
             PlantResult selected = GetRandomResult();
 
-            textBoxResult.Text = $"🌱 당신은 {selected.Name} 입니다!\n\n" +
-                       $"꽃말: {selected.FlowerMeaning}\n\n" +
+            textBoxResult.Text = $"당신은 {selected.Name} 입니다!" 
+                       + Environment.NewLine + Environment.NewLine +
+                       $"꽃말: {selected.FlowerMeaning}" 
+                       + Environment.NewLine + Environment.NewLine +
                        $"{selected.Description}";
 
             string historyLine = $"{DateTime.Now},{season},{value},{selected.Name}";
@@ -122,5 +125,37 @@ namespace WhoPlantAmI
                 MessageBox.Show($"상담 내역 저장 중 오류가 발생했어요. \n{ex.Message}", "알 수 없는 오류!");
             }
         }
+
+        internal void LoadHistory(string historyLine)
+        {
+            var parts = historyLine.Split(',');
+            if (parts.Length < 4) return;
+
+            string datetime = parts[0];
+            string season = parts[1];
+            string value = parts[2];
+            string plantName = parts[3];
+
+            var plant = results.FirstOrDefault(r => r.Name == plantName);
+            if (plant != null)
+            {
+                textBoxResult.Text = $"{plant.Name} ({datetime})"
+                                     + Environment.NewLine + Environment.NewLine +
+                                     $"계절: {season}"
+                                     + Environment.NewLine + Environment.NewLine +
+                                     $"중요 가치: {value}"
+                                     + Environment.NewLine + Environment.NewLine +
+                                     $"꽃말: {plant.FlowerMeaning}"
+                                     + Environment.NewLine + Environment.NewLine +
+                                     $"{plant.Description}";
+            }
+            else
+            {
+                // 식물 정보를 찾지 못한 경우
+                textBoxResult.Text = $"선택한 기록: {datetime}, {season}, {value}, {plantName}\n" +
+                                     "(식물 정보 없음)";
+            }
+        }
+
     }
 }

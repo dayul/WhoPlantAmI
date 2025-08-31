@@ -40,6 +40,7 @@
             this.buttonRefresh.TabIndex = 0;
             this.buttonRefresh.Text = "내역 다시 불러오기";
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // listBoxHistory
             // 
@@ -48,8 +49,10 @@
             "테스트를 하면 결과가 보입니다....."});
             this.listBoxHistory.Location = new System.Drawing.Point(35, 86);
             this.listBoxHistory.Name = "listBoxHistory";
+            this.listBoxHistory.ScrollAlwaysVisible = true;
             this.listBoxHistory.Size = new System.Drawing.Size(268, 342);
             this.listBoxHistory.TabIndex = 1;
+            this.listBoxHistory.SelectedIndexChanged += new System.EventHandler(this.listBoxHistory_SelectedIndexChanged);
             // 
             // FormHistory
             // 
