@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxSeason = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxResult = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -72,6 +72,7 @@
             this.buttonResult.TabIndex = 4;
             this.buttonResult.Text = "결과 보기";
             this.buttonResult.UseVisualStyleBackColor = true;
+            this.buttonResult.Click += new System.EventHandler(this.buttonResult_Click);
             // 
             // comboBoxValue
             // 
@@ -119,7 +120,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.textBoxResult);
             this.groupBox2.Location = new System.Drawing.Point(12, 322);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(398, 209);
@@ -127,13 +128,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "결과";
             // 
-            // textBox1
+            // textBoxResult
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(361, 184);
-            this.textBox1.TabIndex = 0;
+            this.textBoxResult.Location = new System.Drawing.Point(19, 19);
+            this.textBoxResult.Multiline = true;
+            this.textBoxResult.Name = "textBoxResult";
+            this.textBoxResult.ReadOnly = true;
+            this.textBoxResult.Size = new System.Drawing.Size(361, 184);
+            this.textBoxResult.TabIndex = 0;
             // 
             // label1
             // 
@@ -235,7 +237,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxValue;
         private System.Windows.Forms.Button buttonResult;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
