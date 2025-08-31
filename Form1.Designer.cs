@@ -107,6 +107,11 @@
             // comboBoxSeason
             // 
             this.comboBoxSeason.FormattingEnabled = true;
+            this.comboBoxSeason.Items.AddRange(new object[] {
+            "봄",
+            "여름",
+            "가을",
+            "겨울"});
             this.comboBoxSeason.Location = new System.Drawing.Point(228, 41);
             this.comboBoxSeason.Name = "comboBoxSeason";
             this.comboBoxSeason.Size = new System.Drawing.Size(121, 21);

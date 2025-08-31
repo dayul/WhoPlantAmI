@@ -19,8 +19,16 @@ namespace WhoPlantAmI
 
         private void 내역불러오기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormHistory formHistory = new FormHistory();
-            formHistory.Show();
+            FormHistory form = Application.OpenForms["FormHistory"] as FormHistory;
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                form = new FormHistory();
+                form.Show();
+            }
         }
 
         private void 끝내기ToolStripMenuItem_Click(object sender, EventArgs e)
